@@ -117,7 +117,7 @@ function reverseLinkedList(head) {
 //----------------------------------------------------------------------------------------------------------------------
 
 // [2,6,7,8]
-// [1,3,4,5,9,10];
+// [1,2,3,4,5,9,10];
 
 function mergeLinkedLists(headOne, headTwo) {
     let list=headOne.val>headTwo.val?headTwo:headOne;
@@ -197,7 +197,7 @@ var mergeTwoLists = function(l1, l2) {
 
 //----------------------------------------------------------------------------------------------------------------------------
 
-function removeKthNodeFromEnd(head, k) {
+function removeKthNodeFromEnd(head, n) {
     let f = head;
     let s = f;
     let tail;
@@ -228,3 +228,57 @@ function removeKthNodeFromEnd(head, k) {
 // console.log(list)
 
 //----------------------------------------------------------------------------------------------------------------------------
+
+
+let algoArr=[1,2,3,4,5,6];
+let list3={}
+algoArr.forEach(x=>{
+    filing(list3,x)
+})
+
+
+
+function shiftLinkedList(head, n) {
+    const length=calcLength(head,n);
+    let moveIndx=0;
+    if(n===length)return head
+    console.log(moveIndx,length)
+    if(n>0){
+        moveIndx=n%length===n ? length-n:length-n%length;
+    }else if(n<0){
+        moveIndx=Math.abs(n)%length===n ? n*-1 : Math.abs(n)%length;
+    }
+
+    if(moveIndx===0 || moveIndx===length) return head
+    for(let i=1;i<=moveIndx;i++){
+        if(i===moveIndx){
+            let tail=head;
+            head=head.next;
+            tail.next=null;
+        }else{
+            head=head.next;
+        }
+    }
+    return head
+}
+
+const calcLength=(list,n)=>{
+    if(n===0)return 0;
+    n=Math.abs(n)
+    let length=0;
+    let tail=list;
+    while (tail) {
+        length++;
+        console.log(!tail.next && length !== n && n % length !== 0)
+        if (!tail.next && length !== n && n % length !== 0) {
+            tail.next = list;
+            break;
+        }
+        tail = tail.next;
+    }
+
+    return length;
+}
+
+
+console.log(running(shiftLinkedList(list3,18)));
