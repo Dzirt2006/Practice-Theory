@@ -402,12 +402,51 @@ let reverse = function(n) {
 
 
 
+//------------------------------------------------------------------------------------------------------------------
+
+function longestPalindromicSubstring(str) {
+    if(str.length===1) return str
+    let result='';
+    for(let i=0;i<str.length;i++){
+        let startIndex=i;
+        let endIndex=str.length-1;
+        let temp='';
+        let bool=false;
+        while(startIndex<=endIndex){
+
+           if(!bool && str[startIndex]===str[endIndex]){
+                bool=true;
+                temp=endIndex;
+                startIndex++;
+                endIndex--;
+               console.log( 'in bool',temp)
+            }else if(!bool && str[startIndex]!==str[endIndex]){
+                endIndex--;
+            }else if(bool && str[startIndex]===str[endIndex]){
+                startIndex++;
+                endIndex--;
+            }else if(bool && str[startIndex]!==str[endIndex]){
+                temp='';
+                startIndex=i;
+                bool=false;
+            }
+
+        }
+
+        if(temp){
+            let sub=str.substring(i,temp+1)
+            console.log(temp,sub,i)
+            if(sub.length>result.length){
+                result=sub;
+            }
+        }
+    }
+    return result;
+}
 
 
 
-
-
-
+console.log(longestPalindromicSubstring("a"))
 
 
 
