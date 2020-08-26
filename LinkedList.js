@@ -221,7 +221,8 @@ function mergeLinkedListsTwo(headOne, headTwo) {
     return headOne.val<headTwo.val? headOne:headTwo;
 }
 
-console.log('res', running(mergeLinkedListsTwo(list, list2)));
+// console.log('res', running(mergeLinkedListsTwo(list, list2)));
+
 
 //----------------------------------------------------------------------------------------------------------------------------
 

@@ -26,19 +26,67 @@ input:  shiftArr = [9, 12, 17, 2, 4, 5], num = 2 # shiftArr is the
 
 output: 3 # since it’s the index of 2 in arr
  */
+// function shiftedArrSearch(shiftArr, num) {
+//     let lastIndex = shiftArr.length - 1;
+//     let count = 0;
+//     while (shiftArr[0] !== num && count < lastIndex) {
+//         let shift=shiftArr.shift();
+//         shiftArr.push(shift);
+//         count++;
+//     }
+//     if(shiftArr[0]===num){
+//         return count;
+//     }else{
+//         return -1;
+//     }
+// }
+
 function shiftedArrSearch(shiftArr, num) {
-    let lastIndex = shiftArr.length - 1;
-    let count = 0;
-    while (shiftArr[0] !== num && count < lastIndex) {
-        let shift=shiftArr.shift();
-        shiftArr.push(shift);
-        count++;
-    }
-    if(shiftArr[0]===num){
-        return count;
-    }else{
-        return -1;
+    const pivot = pivotR(shiftArr, 0, shiftArr.length - 1);
+    if (shiftArr[0] <= num) {
+        return bsearch(shiftArr, 0, pivot, num);
+    } else if (shiftArr[pivot + 1] <= num) {
+        return bsearch(shiftArr, pivot + 1, shiftArr.length - 1, num);
     }
 }
 
-console.log(shiftedArrSearch([9, 12, 17, 26, 4, 5], num = 2));
+const bsearch = (arr, start, end, target) => {
+    if (start === end) {
+        return arr[start] === num ? start : -1;
+    } else if (start + 1 === end) {
+        if (arr[start] === target) {
+            return start;
+        }
+        if (arr[end] === target) {
+            return end;
+        }
+        return -1;
+    } else {
+        let midle = start + Math.floor((end - start) / 2);
+        if (arr[midle] > target) {
+            end = midle;
+            return bsearch(arr, start, end, target);
+        } else if (arr[midle] < target) {
+            start = midle;
+            return bsearch(arr, start, end, target);
+        } else {
+            return midle;
+        }
+
+    }
+}
+
+function pivotR(arr, start, end) {
+    while (arr[start] > arr[end]) {
+        end--;
+    }
+    return end;
+}
+
+// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 9));
+// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 12));
+// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 17));
+// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 2));
+// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 4));
+// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 5));
+
