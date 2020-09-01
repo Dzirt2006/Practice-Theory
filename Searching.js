@@ -88,5 +88,5 @@ function pivotR(arr, start, end) {
 // console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 17));
 // console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 2));
 // console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 4));
-// console.log(shiftedArrSearch([9, 12, 17, 2, 4, 5], num = 5));
+console.log(shiftedArrSearch([1,2,3,4,5,0], num = 0));
 
