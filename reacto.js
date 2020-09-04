@@ -468,12 +468,64 @@ moveZeros(zerosArray)
 // console.log(zerosArray);
 
 
+//--------------------------------------------------------------------------------------Spiral Traverse---------------------------------------------------------
 
 
+function spiralTraverse(arr) {
+    let firstRow=0;
+    let secondCol=0;
+    let firstCol=arr[0].length-1;
+    let secondRow=arr.length-1;
+    const ress=[];
+    while(firstRow<=secondRow && firstCol>=secondCol){
+        //first row run
+        // console.log(firstRow,firstCol,secondRow,secondCol)
+        for(let i=secondCol;i<=firstCol;i++){
+            ress.push(arr[firstRow][i]);
+            console.log("first row ",arr[firstRow][i])
+        }
+        //first column
+        for(let i=firstRow+1;i<=secondRow;i++){
+            ress.push(arr[i][firstCol]);
+            console.log("first column ",arr[i][firstCol])
+        }
+
+        //second Row(reverse)
+        for(let i=firstCol-1;i>=secondCol;i--){
+            // console.log("second Row ****************",secondRow,i)
+            if(secondRow===firstRow) break;
+            ress.push(arr[secondRow][i])
+            console.log("second Row ",arr[secondRow][i])
+        }
+        //second Column(reverse)
+        for(let i=secondRow-1;i>firstRow;i--){
+            if(secondCol===firstCol) break;
+            ress.push(arr[i][secondCol])
+            console.log("second Column ",arr[i][secondCol],i)
+        }
+        firstRow++;
+        secondCol++;
+        firstCol--;
+        secondRow--;
+    }
+    return ress;
+}
+
+// console.log(spiralTraverse([[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]));
+console.log(spiralTraverse( [
+        [27, 12, 35, 26],
+        [25, 21, 94, 11],
+        [19, 96, 43, 56],
+        [55, 36, 10, 18],
+        [96, 83, 31, 94],
+        [93, 11, 90, 16]
+    ]
+));
 
 
-
-
+console.log(spiralTraverse(
+    [[1, 2, 3], [12, 13, 4], [11, 14, 5], [10, 15, 6], [9, 8, 7]
+]))
 
 
 
