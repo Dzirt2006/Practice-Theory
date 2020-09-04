@@ -152,3 +152,34 @@ continin.insert(5).insert(10).insert(100)
 
 console.log(continin.getMedian());
 
+
+
+//----------------------------------------------------------------------------------Heap algorithm for permutations----------------------------------
+
+function heapPermutations(arr) {
+    const permutations = []
+    arrHeapPremSwap(arr, arr.length, permutations);
+    return permutations;
+}
+
+function arrHeapPremSwap(arr, size, permutation) {
+    if (size === 1) {
+        permutation.push([...arr]);
+    } else {
+        for (let i = 0; i < size; i++) {
+            arrHeapPremSwap(arr, size - 1, permutation);
+            if (size % 2 === 1) {
+                let temp = arr[0];
+                arr[0] = arr[size - 1];
+                arr[size - 1] = temp;
+            } else {
+                let temp = arr[i];
+                arr[i] = arr[size - 1];
+                arr[size - 1] = temp;
+            }
+        }
+    }
+}
+
+// console.log(heapPermutations([1, 2, 3,4]));
+

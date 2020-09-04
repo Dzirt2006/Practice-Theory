@@ -45,9 +45,9 @@ function findSmallestDivisor(s, t) {
     }
 }
 
-// console.log(findSmallestDivisor('rbrb','rbrb')) //return 2
-// findSmallestDivisor('lrbb','lrbb') //return 4
-// findSmallestDivisor('bcdbcdbcd','bcdbcd') //return -1
+console.log(findSmallestDivisor('rbrb','rbrb')) //return 2
+findSmallestDivisor('lrbb','lrbb') //return 4
+findSmallestDivisor('bcdbcdbcd','bcdbcd') //return -1
 
 
 

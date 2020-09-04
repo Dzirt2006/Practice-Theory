@@ -84,27 +84,28 @@ const maxArea = function (height) {
 
 
 const heights = [1, 5, 1, 0, 3, 1, 4, 0, 3]
-    // console.log(waterArea(heights)) // returns 14
-    // maxArea(heights)
+// console.log(waterArea(heights)) // returns 14
+// maxArea(heights)
 //----------------------------------------------------------------------------------------------------------------------------
 
 
-    function isValidSubsequence(array, arr2) {
-        // let check=array.length===sequence.length;
-        let sequence = [...arr2];
-        let sub = true;
-        for (let i = 0; i < array.length; i++) {
+function isValidSubsequence(array, arr2) {
+    // let check=array.length===sequence.length;
+    let sequence = [...arr2];
+    let sub = true;
+    for (let i = 0; i < array.length; i++) {
 
-            if (sequence.includes(array[i])) {
-                if (arr2[i] !== array[i]) {
-                    sub = false;
-                }
-                const index = sequence.indexOf(array[i]);
-                sequence = sequence.slice(0, index).concat(sequence.slice(index + 1))
+        if (sequence.includes(array[i])) {
+            if (arr2[i] !== array[i]) {
+                sub = false;
             }
+            const index = sequence.indexOf(array[i]);
+            sequence = sequence.slice(0, index).concat(sequence.slice(index + 1))
         }
-        return (sequence.length <= 0 && sub);
     }
+    return (sequence.length <= 0 && sub);
+}
+
 //
 //
 // const array = [5, 1, 22, 25, 6, -1, 8, 10]
@@ -260,36 +261,36 @@ var romanToInt = function (s) {
 
 //----------------------------------------------------------------------------------------------------------------------------
 
-var isPalindrome = function(x) {
-    if(x<0)return false
-    let temp=x;
-    let pol=0;
-    while(temp){
-        let temp1=temp%10/10;
-            pol=(pol+temp1)*10;
-            temp=temp/10|0;
-        }
+var isPalindrome = function (x) {
+    if (x < 0) return false
+    let temp = x;
+    let pol = 0;
+    while (temp) {
+        let temp1 = temp % 10 / 10;
+        pol = (pol + temp1) * 10;
+        temp = temp / 10 | 0;
+    }
     return (pol === x);
 };
 
 // console.log(isPalindrome(10))
 
 //---------------------------------------------------------------------------------------------------------------------------
-const prSum=[5, 2, [7, -1], 3, [6, [-13, 8], 4]];
+const prSum = [5, 2, [7, -1], 3, [6, [-13, 8], 4]];
 
 function productSum(array) {
-    return summHelper(array,2);
+    return summHelper(array, 2);
 }
 
 
-const summHelper=(arr,int)=>{
-    let sum=0;
-    for(let i=0;i<arr.length;i++){
-        if(typeof arr[i]==="object"){
-            sum+=(int*(summHelper(arr[i],(int+1))))
+const summHelper = (arr, int) => {
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (typeof arr[i] === "object") {
+            sum += (int * (summHelper(arr[i], (int + 1))))
 
-        }else{
-            sum+=arr[i]
+        } else {
+            sum += arr[i]
         }
     }
 
@@ -303,23 +304,23 @@ const summHelper=(arr,int)=>{
 
 
 function shortenPath(path) {
-    const stack=[];
-    if(path[0]==='/') stack.push('')
-    let arr=path.split('/').filter(x=>(x!=='' && x!=='.'))
-    for(let i=0;i<arr.length;i++){
-            if(arr[i]==='..'){
-                if(stack[stack.length-1]==='..' || stack.length===0 ) {
-                    stack.push(arr[i])
-                }else if(stack[stack.length-1]!=='') {
-                    stack.pop();
-                }
-            }else{
-                stack.push(arr[i]);
+    const stack = [];
+    if (path[0] === '/') stack.push('')
+    let arr = path.split('/').filter(x => (x !== '' && x !== '.'))
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i] === '..') {
+            if (stack[stack.length - 1] === '..' || stack.length === 0) {
+                stack.push(arr[i])
+            } else if (stack[stack.length - 1] !== '') {
+                stack.pop();
             }
+        } else {
+            stack.push(arr[i]);
+        }
     }
-    if(stack.length===1 && stack[0]===''){
+    if (stack.length === 1 && stack[0] === '') {
         return '/'
-    }else {
+    } else {
         return stack.join('/');
     }
 }
@@ -328,35 +329,21 @@ function shortenPath(path) {
 // console.log(shortenPath("/../../foo/bar/baz"))
 
 
-
-//------------------------------------------------------------------------------------------------------------------
-
-const palinStr="it's highnoon";
-
-function longestPalindromicSubstring(str) {
-
-   console.log(arr.indexOf('n'))
-}
-
-
-
-// console.log(longestPalindromicSubstring(palinStr))
-
 //------------------------------------------------------------------------------------------------------------------
 
 
 function balancedBrackets(str) {
-    const stack=[];
-    const arr=['[','{','(',']','}',')'];
-    for(let i=0;i<str.length;i++){
+    const stack = [];
+    const arr = ['[', '{', '(', ']', '}', ')'];
+    for (let i = 0; i < str.length; i++) {
 
-        if(opening(str[i])){
+        if (opening(str[i])) {
             stack.push(str[i]);
-        }else{
-            const top=stack[stack.length-1]
-            if(closing(top,str[i])){
+        } else {
+            const top = stack[stack.length - 1]
+            if (closing(top, str[i])) {
                 stack.pop();
-            }else {
+            } else {
                 if (!arr.includes(str[i])) {
                     continue;
                 } else {
@@ -366,16 +353,16 @@ function balancedBrackets(str) {
         }
     }
 
-    return stack.length===0;
+    return stack.length === 0;
 }
 
-const closing=(char1,char2)=>{
-    const map={'{':'}','[':']','(':')'};
-    return map[char1]===char2;
+const closing = (char1, char2) => {
+    const map = {'{': '}', '[': ']', '(': ')'};
+    return map[char1] === char2;
 }
 
-const opening=char=>{
-    const arr=['[','{','('];
+const opening = char => {
+    const arr = ['[', '{', '('];
     return arr.includes(char);
 }
 
@@ -386,67 +373,52 @@ const opening=char=>{
 //------------------------------------------------------------------------------------------------------------------
 
 
-let reverse = function(n) {
+let reverse = function (n) {
     let digit, result = 0
 
-    while( n ){
+    while (n) {
         digit = n % 10                  //  Get last digit. Ex. 123/10 → 12.3 → 3
         result = (result * 10) + digit  //  Ex. 123 → 1230 + 4 → 1234
-        n = n/10|0                      //  Remove last digit. Ex. 123 → 12.3 → 12
+        n = n / 10 | 0                      //  Remove last digit. Ex. 123 → 12.3 → 12
     }
-    if(result>(Math.pow(2,32))){
-        result=0;
+    if (result > (Math.pow(2, 32))) {
+        result = 0;
     }
     return result
 };
 
 
 
-//------------------------------------------------------------------------------------------------------------------
-
-function longestPalindromicSubstring(str) {
-    if(str.length===1) return str
-    let result='';
-    for(let i=0;i<str.length;i++){
-        let startIndex=i;
-        let endIndex=str.length-1;
-        let temp='';
-        let bool=false;
-        while(startIndex<=endIndex){
-
-           if(!bool && str[startIndex]===str[endIndex]){
-                bool=true;
-                temp=endIndex;
-                startIndex++;
-                endIndex--;
-               console.log( 'in bool',temp)
-            }else if(!bool && str[startIndex]!==str[endIndex]){
-                endIndex--;
-            }else if(bool && str[startIndex]===str[endIndex]){
-                startIndex++;
-                endIndex--;
-            }else if(bool && str[startIndex]!==str[endIndex]){
-                temp='';
-                startIndex=i;
-                bool=false;
-            }
-
-        }
-
-        if(temp){
-            let sub=str.substring(i,temp+1)
-            console.log(temp,sub,i)
-            if(sub.length>result.length){
-                result=sub;
-            }
-        }
-    }
-    return result;
-}
 
 
 
-console.log(longestPalindromicSubstring("a"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
