@@ -387,16 +387,85 @@ let reverse = function (n) {
     return result
 };
 
+//---------------------------------------------------------------------------------Tree Number Sum----------------------------------------
+
+//wrong but nice (gives dublicates
+function threeNumberSumHashMap(arr, target) {
+    arr.sort();
+    let map = new Map();
+    const result = [];
+    arr.forEach(int => map.set(int, int));
+    let left = 0;
+    let right = left + 1;
+    while (left < arr.length - 1) {
+        let sum = arr[left] + arr[right];
+        let forSearch = target - sum;
+        const finder = map.get(forSearch)
+        console.log(left, right)
+        if (finder && finder !== arr[left]) {
+            result.push([arr[left], arr[right], finder])
+        }
+        if (right === arr.length - 1) {
+            left++;
+            right = left + 1;
+        } else {
+            right++;
+        }
+    }
+    return result;
+}
 
 
+//wrong but nice (gives dublicates
+function threeNumberSum(arr, target) {
+    arr.sort((x,y)=>x-y);
+    const result = [];
+    console.log(arr)
+    for (let i = 0; i < arr.length-1; i++) {
+        let left=i+1;
+        let right=arr.length-1;
+        while (left < right) {
+            let sum=arr[i]+arr[left]+arr[right];
+            console.log(sum)
+            if(sum>target){
+                right--;
+            }else if(sum<target){
+                left++;
+            }else{
+                result.push([arr[i],arr[left],arr[right]])
+                right--;
+                left++;
+            }
+
+        }
+    }
+    return result;
+}
+
+// console.log(threeNumberSum([-4, 1, 12, -5, 7, 5], 3));
 
 
+//---------------------------------------------------------------------------------move all zeros to theend of the array    ----------------------------------------
 
+const zerosArray=[0,6,0,0,2,0,0,0,0,0,0,0,0,0,1,0,5,0,0,0];
+ function moveZeros(arr){
+     let left=0;
+     let right=arr.length-1;
 
-
-
-
-
+     while(left<right){
+         while(arr[right]===0){
+             right--;
+         }
+         if(arr[left]===0){
+             let temp=arr[left];
+             arr[left]=arr[right];
+             arr[right]=temp;
+         }
+         left++;
+     }
+ }
+moveZeros(zerosArray)
+// console.log(zerosArray);
 
 
 
