@@ -31,45 +31,8 @@ function travNDepth(root,count){
 
 
 
-//------------------------------------------------------------------------------------------------------------------
-function findClosestValueInBst(tree, target) {
 
-}
-
-const FCVHelper=(tree,target)=>{
-    let val;
-    if(target>tree.value){
-        if(tree.right){
-            val=closest(tree.value,tree.right.value,target);
-            let temp=FCVHelper(tree.right,target)
-            closest(val,temp,target)
-            return val<temp?val:temp;
-        }else{
-            return null
-        }
-
-    }else if(target<tree.value){
-        if(tree.left){
-            val=closest(tree.left.value,tree.value,target);
-            let temp=FCVHelper(tree.left,target);
-            return val<temp?val:temp;
-        }else{
-            return null
-        }
-    }else if(tree.value===target){
-        return target;
-    }else{
-        return null;
-    }
-}
-
-const closest=(leftInt,rightInt,target)=>{
-    return Math.abs(target-leftInt)<Math.abs(target-rightInt)? leftInt:rightInt;
-}
-
-
-
-//------------------------------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------------Invert Binary Tree-----------------
 
 function invertBinaryTree(tree) {
     if(tree.value){
@@ -83,4 +46,21 @@ function invertBinaryTree(tree) {
         return null;
     }
 }
-//------------------------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------Branch Sums---------------------
+
+function branchSums(root) {
+    const resArr=[];
+    branchTraversalSum(root,0,resArr);
+    return resArr;
+}
+
+function branchTraversalSum(node,val,arr){
+    if(!node.left && !node.right){
+        val+=node.value;
+        arr.push(val);
+    }else{
+        val+=node.value;
+        if(node.left) branchTraversalSum(node.left,val,arr);
+        if(node.right) branchTraversalSum(node.right,val,arr);
+    }
+}
