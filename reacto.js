@@ -418,21 +418,21 @@ function threeNumberSumHashMap(arr, target) {
 
 //wrong but nice (gives dublicates
 function threeNumberSum(arr, target) {
-    arr.sort((x,y)=>x-y);
+    arr.sort((x, y) => x - y);
     const result = [];
     console.log(arr)
-    for (let i = 0; i < arr.length-1; i++) {
-        let left=i+1;
-        let right=arr.length-1;
+    for (let i = 0; i < arr.length - 1; i++) {
+        let left = i + 1;
+        let right = arr.length - 1;
         while (left < right) {
-            let sum=arr[i]+arr[left]+arr[right];
+            let sum = arr[i] + arr[left] + arr[right];
             console.log(sum)
-            if(sum>target){
+            if (sum > target) {
                 right--;
-            }else if(sum<target){
+            } else if (sum < target) {
                 left++;
-            }else{
-                result.push([arr[i],arr[left],arr[right]])
+            } else {
+                result.push([arr[i], arr[left], arr[right]])
                 right--;
                 left++;
             }
@@ -447,23 +447,25 @@ function threeNumberSum(arr, target) {
 
 //---------------------------------------------------------------------------------move all zeros to theend of the array    ----------------------------------------
 
-const zerosArray=[0,6,0,0,2,0,0,0,0,0,0,0,0,0,1,0,5,0,0,0];
- function moveZeros(arr){
-     let left=0;
-     let right=arr.length-1;
+const zerosArray = [0, 6, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 5, 0, 0, 0];
 
-     while(left<right){
-         while(arr[right]===0){
-             right--;
-         }
-         if(arr[left]===0){
-             let temp=arr[left];
-             arr[left]=arr[right];
-             arr[right]=temp;
-         }
-         left++;
-     }
- }
+function moveZeros(arr) {
+    let left = 0;
+    let right = arr.length - 1;
+
+    while (left < right) {
+        while (arr[right] === 0) {
+            right--;
+        }
+        if (arr[left] === 0) {
+            let temp = arr[left];
+            arr[left] = arr[right];
+            arr[right] = temp;
+        }
+        left++;
+    }
+}
+
 moveZeros(zerosArray)
 // console.log(zerosArray);
 
@@ -472,36 +474,36 @@ moveZeros(zerosArray)
 
 
 function spiralTraverse(arr) {
-    let firstRow=0;
-    let secondCol=0;
-    let firstCol=arr[0].length-1;
-    let secondRow=arr.length-1;
-    const ress=[];
-    while(firstRow<=secondRow && firstCol>=secondCol){
+    let firstRow = 0;
+    let secondCol = 0;
+    let firstCol = arr[0].length - 1;
+    let secondRow = arr.length - 1;
+    const ress = [];
+    while (firstRow <= secondRow && firstCol >= secondCol) {
         //first row run
         // console.log(firstRow,firstCol,secondRow,secondCol)
-        for(let i=secondCol;i<=firstCol;i++){
+        for (let i = secondCol; i <= firstCol; i++) {
             ress.push(arr[firstRow][i]);
-            console.log("first row ",arr[firstRow][i])
+            console.log("first row ", arr[firstRow][i])
         }
         //first column
-        for(let i=firstRow+1;i<=secondRow;i++){
+        for (let i = firstRow + 1; i <= secondRow; i++) {
             ress.push(arr[i][firstCol]);
-            console.log("first column ",arr[i][firstCol])
+            console.log("first column ", arr[i][firstCol])
         }
 
         //second Row(reverse)
-        for(let i=firstCol-1;i>=secondCol;i--){
+        for (let i = firstCol - 1; i >= secondCol; i--) {
             // console.log("second Row ****************",secondRow,i)
-            if(secondRow===firstRow) break;
+            if (secondRow === firstRow) break;
             ress.push(arr[secondRow][i])
-            console.log("second Row ",arr[secondRow][i])
+            console.log("second Row ", arr[secondRow][i])
         }
         //second Column(reverse)
-        for(let i=secondRow-1;i>firstRow;i--){
-            if(secondCol===firstCol) break;
+        for (let i = secondRow - 1; i > firstRow; i--) {
+            if (secondCol === firstCol) break;
             ress.push(arr[i][secondCol])
-            console.log("second Column ",arr[i][secondCol],i)
+            console.log("second Column ", arr[i][secondCol], i)
         }
         firstRow++;
         secondCol++;
@@ -512,29 +514,47 @@ function spiralTraverse(arr) {
 }
 
 // console.log(spiralTraverse([[1, 2, 3, 4], [12, 13, 14, 5], [11, 16, 15, 6], [10, 9, 8, 7]]));
-console.log(spiralTraverse( [
-        [27, 12, 35, 26],
-        [25, 21, 94, 11],
-        [19, 96, 43, 56],
-        [55, 36, 10, 18],
-        [96, 83, 31, 94],
-        [93, 11, 90, 16]
-    ]
-));
+// console.log(spiralTraverse( [
+//         [27, 12, 35, 26],
+//         [25, 21, 94, 11],
+//         [19, 96, 43, 56],
+//         [55, 36, 10, 18],
+//         [96, 83, 31, 94],
+//         [93, 11, 90, 16]
+//     ]
+// ));
+
+//
+// console.log(spiralTraverse(
+//     [[1, 2, 3], [12, 13, 4], [11, 14, 5], [10, 15, 6], [9, 8, 7]
+// ]))
 
 
-console.log(spiralTraverse(
-    [[1, 2, 3], [12, 13, 4], [11, 14, 5], [10, 15, 6], [9, 8, 7]
-]))
+//--------------------------------------------------------------------------------------------------------
+/**
+ * Given an array of integers arr where each element is at most k places away from its sorted position,
+ * code an efficient function sortKMessedArray that sorts arr. For instance, for an input array of size 10 and k = 2,
+ * an element belonging to index 6 in the sorted array will be located at either index 4, 5, 6, 7 or 8 in the input array.
+ *
+ * input:  arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9], k = 2
+ * output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ */
+
+function sortKMessedArrayWindow(arr, k) {
+    for (let i = 0; i < arr.length - k+1; i++) {
+            let j = i+k;
+            while (j > i && arr[j] < arr[j - 1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                j--;
+            }
+    }
+    return arr;
+}
 
 
-
-
-
-
-
-
-
+console.log(sortKMessedArrayWindow([1, 4, 5, 2, 3, 7, 8, 6, 10, 9], 2))
 
 
 

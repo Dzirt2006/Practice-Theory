@@ -61,7 +61,7 @@ class Heap {
     }
 
     insert(value) {
-        let lastElement = this.heap.length-1;
+        let lastElement = this.heap.length - 1;
         this.heap.push(value);
         // this.siftUp(lastElement, this.heap);
         this.buildHeap(this.heap);
@@ -75,7 +75,7 @@ const arrayInpt = [48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41];
 // const arrayInpt = [5, 10, 100, 200, 6]
 
 const minHeap = new Heap(arrayInpt, 'min');
-console.log(minHeap.heap);
+// console.log(minHeap.heap);
 // minHeap.insert(76);
 // console.log(minHeap.heap);
 
@@ -132,7 +132,7 @@ class ContinuousMedianHandler {
         } else {
             this.median = this.maxHeap.lenght > this.minHeap.lenght ? this.maxHeap.peek() : this.minHeap.peek();
         }
-        console.log('\n', " min ", this.maxHeap.heap,this.maxHeap.lenght,'\n', "  max", this.minHeap.heap,this.minHeap.lenght," ---", this.median, "\n");
+        console.log('\n', " min ", this.maxHeap.heap, this.maxHeap.lenght, '\n', "  max", this.minHeap.heap, this.minHeap.lenght, " ---", this.median, "\n");
     }
 
 
@@ -143,15 +143,14 @@ class ContinuousMedianHandler {
 }
 
 
-const continin = new ContinuousMedianHandler();
-// continin.insert(1).insert(3).insert(7)
-continin.insert(5).insert(10).insert(100)
-    .insert(200)
-    .insert(6).insert(13)
-    .insert(14).insert(50).insert(51).insert(52);
+// const continin = new ContinuousMedianHandler();
+// // continin.insert(1).insert(3).insert(7)
+// continin.insert(5).insert(10).insert(100)
+//     .insert(200)
+//     .insert(6).insert(13)
+//     .insert(14).insert(50).insert(51).insert(52);
 
-console.log(continin.getMedian());
-
+// console.log(continin.getMedian());
 
 
 //----------------------------------------------------------------------------------Heap algorithm for permutations----------------------------------
@@ -182,4 +181,77 @@ function arrHeapPremSwap(arr, size, permutation) {
 }
 
 // console.log(heapPermutations([1, 2, 3,4]));
+
+
+//---------------------------------------------------------------------------------- K-Messed Array Sort--------------------------------------
+
+/**
+ * Given an array of integers arr where each element is at most k places away from its sorted position,
+ * code an efficient function sortKMessedArray that sorts arr. For instance, for an input array of size 10 and k = 2,
+ * an element belonging to index 6 in the sorted array will be located at either index 4, 5, 6, 7 or 8 in the input array.
+ *
+ * input:  arr = [1, 4, 5, 2, 3, 7, 8, 6, 10, 9], k = 2
+ * output: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+ */
+
+function sortKMessedArray(arr, k) {
+    const tempArr=[];
+    let minHeap;
+    const result=[];
+    for(let i=0;i<arr.length;i++){
+        if(i<k+1){
+            tempArr.push(arr[i])
+            if(i===k){
+                minHeap=new Heap(tempArr,'min')
+            }
+        }else{
+
+            minHeap.insert(arr[i]);
+            result.push(minHeap.remove());
+        }
+    }
+    for(let i=0;i<=k;i++){
+        result.push(minHeap.remove());
+    }
+    return result;
+}
+
+console.log(sortKMessedArray([1, 4, 5, 2, 3, 7, 8, 6, 10, 9],2))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

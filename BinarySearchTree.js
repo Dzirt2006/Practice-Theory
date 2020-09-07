@@ -35,7 +35,7 @@ class BST {
         return value === this.value;
     }
 
-    remove(value, parentNode=this) {
+    remove(value, parentNode = this) {
         if (value > this.value) {
             this.right.remove(value, this);
         } else if (value < this.value) {
@@ -56,10 +56,10 @@ class BST {
                 this.value = tempNode.value;
                 this.right.remove(tempNode.value, this);
             } else {
-                console.log(parentNode,this,value)
-                if(parentNode===this){
+                console.log(parentNode, this, value)
+                if (parentNode === this) {
                     return;
-                }else if (parentNode.left === this) {
+                } else if (parentNode.left === this) {
                     parentNode.left = null;
                 } else {
                     parentNode.right = null;
@@ -87,7 +87,7 @@ class BST {
 }
 
 const tree = new BST(10);
-// tree.insert(5).insert(15).remove(5).remove(15);
+tree.insert(5).insert(15).insert(13).insert(2).insert(1).insert(22).insert(14);
 // tree.remove(10);
 // console.log(tree.contains(222))
 
@@ -121,3 +121,50 @@ function findClosestValueInBst(tree, target) {
 const closest = (leftInt, rightInt, target) => {
     return Math.abs(target - leftInt) < Math.abs(target - rightInt) ? leftInt : rightInt;
 }
+
+
+//---------------------------------------------------------------------------------Validate Bst---------------------------------
+
+
+function validateBst(tree) {
+    return validateBstRec(tree, -Infinity, Infinity);
+}
+
+const validateBstRec = (tree, min,max) => {
+ if(tree===null) return true;
+ if(tree.value<min || tree.value>=max) return false;
+ const left=validateBstRec(tree.left,min,tree.value);
+ const right=validateBstRec(tree.right,tree.value,max);
+ return left===right;
+}
+
+//----------------------------------------------------------------------------------Traversal BST---------------------------------
+
+function inOrderTraverse(tree, array) {
+    if(tree) {
+        inOrderTraverse(tree.left, array);
+        array.push(tree.value);
+        inOrderTraverse(tree.right, array);
+    }
+    return array;
+}
+
+function preOrderTraverse(tree, array) {
+    if(tree) {
+        array.push(tree.value);
+        preOrderTraverse(tree.left, array);
+        preOrderTraverse(tree.right, array);
+
+    }
+    return array;
+}
+
+function postOrderTraverse(tree, array) {
+    if(tree) {
+        postOrderTraverse(tree.left, array);
+        postOrderTraverse(tree.right, array);
+        array.push(tree.value);
+    }
+    return array;
+}
+ console.log(preOrderTraverse(tree,[]))
