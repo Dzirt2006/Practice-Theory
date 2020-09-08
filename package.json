@@ -1,0 +1,19 @@
+{
+  "name": "agorithms",
+  "version": "1.0.0",
+  "description": "algorithm and DT",
+  "main": "reacto.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dzirt2006/Practice-Theory.git"
+  },
+  "author": "Alex",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dzirt2006/Practice-Theory/issues"
+  },
+  "homepage": "https://github.com/Dzirt2006/Practice-Theory#readme"
+}

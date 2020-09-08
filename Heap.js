@@ -71,6 +71,8 @@ class Heap {
 }
 
 
+
+
 const arrayInpt = [48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41];
 // const arrayInpt = [5, 10, 100, 200, 6]
 
@@ -216,42 +218,11 @@ function sortKMessedArray(arr, k) {
     return result;
 }
 
-console.log(sortKMessedArray([1, 4, 5, 2, 3, 7, 8, 6, 10, 9],2))
+// console.log(sortKMessedArray([1, 4, 5, 2, 3, 7, 8, 6, 10, 9],2))
+
+const arrHeap=[8, 5, 2, 9, 5, 6, 3]
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+const heap=new Heap(arrHeap,"max");
+console.log(heap.heap)
