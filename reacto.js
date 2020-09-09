@@ -541,32 +541,50 @@ function spiralTraverse(arr) {
  */
 
 function sortKMessedArrayWindow(arr, k) {
-    for (let i = 0; i < arr.length - k+1; i++) {
-            let j = i+k;
-            while (j > i && arr[j] < arr[j - 1]) {
-                    let temp = arr[j];
-                    arr[j] = arr[j - 1];
-                    arr[j - 1] = temp;
-                j--;
-            }
+    for (let i = 0; i < arr.length - k + 1; i++) {
+        let j = i + k;
+        while (j > i && arr[j] < arr[j - 1]) {
+            let temp = arr[j];
+            arr[j] = arr[j - 1];
+            arr[j - 1] = temp;
+            j--;
+        }
     }
     return arr;
 }
 
+//---------------------------------------------------------------------------------------smallestDifference
 
-console.log(sortKMessedArrayWindow([1, 4, 5, 2, 3, 7, 8, 6, 10, 9], 2))
+//brute force O(n*m); space O(m);
+function smallestDifferenceBrute(arrayOne, arrayTwo) {
+    let closest;
+    let resArr;
+    for (let i = 0; i < arrayOne.length; i++) {
+        for(let j=0;j<arrayTwo.length;j++){
+            if(i===0){
+                closest=Math.abs(arrayOne[i]-arrayTwo[j]);
+                resArr=[arrayOne[i],arrayTwo[j]];
+            }else{
+                let temp=Math.abs(arrayOne[i]-arrayTwo[j]);
+                if(closest>temp){
+                    closest=Math.abs(arrayOne[i]-arrayTwo[j]);
+                    resArr=[arrayOne[i],arrayTwo[j]];
+                }
+            }
+        }
+    }
+    return resArr;
+}
+
+
+function smallestDifference(arrayOne, arrayTwo) {
+
+}
+
+
+const arr1 = [-1, 5, 10, 20, 28, 3]
+const arr2 = [26, 134, 135, 15, 17]
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+console.log(smallestDifference(arr1,arr2))

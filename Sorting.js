@@ -62,13 +62,9 @@ function insertionSort(array) {
 
 //----------------------------------------------------------------------------------------------------Quick Sort-----------
 
-function quickSort(array) {
-    let r = array.length - 1;
-    help(array, 0, r)
-    return array;
-}
 
-const help = (arr, start, end) => {
+
+const quickSort = (arr, start=0, end=arr.length - 1) => {
     if (start >= end) {
         return
     } else {
@@ -91,13 +87,13 @@ const help = (arr, start, end) => {
         let temp = arr[right];
         arr[right] = arr[pivot];
         arr[pivot] = temp;
-        help(arr, start, right - 1);
-        help(arr, right + 1, end);
+        quickSort(arr, start, right - 1);
+        quickSort(arr, right + 1, end);
     }
 }
-const lol = [1, 3, 2]
+const lol = [2,3,1]
 quickSort(lol)
-// console.log(lol);
+console.log(lol);
 
 //----------------------------------------------------------------------------------------------------------- Merge Sort ----
 
@@ -188,8 +184,8 @@ function heapSort(array) {
 
 const arrHeap = [8, 5, 2, 9, 5, 6, 3]
 
-heapSort(arrHeap)
-// console.log(arrHeap);
+// heapSort(arrHeap)
+console.log(mergeSort(arrHeap));
 
 
 
