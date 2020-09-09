@@ -609,4 +609,62 @@ const arr1 = [-1, 5, 10, 20, 28, 3]
 const arr2 = [26, 134, 135, 15, 17]
 
 
-console.log(smallestDifference(arr1, arr2))
+// console.log(smallestDifference(arr1, arr2))
+
+
+//---------------------------------------------------------------------------------------------anagram------------------------
+
+
+// O(nlog(n)*m)-time   O(n^2) - space
+
+class AnagramHashTable {
+    constructor() {
+        this.table = {};
+    }
+
+    add(key, value) {
+        if (this.table[key]) {
+            this.table[key].push(value);
+        } else {
+            this.table[key] = [value];
+        }
+    }
+
+    getAnagrams() {
+        const result = [];
+        for (let i in this.table) {
+                result.push(this.table[i]);
+        }
+        return result;
+    }
+}
+
+function groupAnagrams(words) {
+    const hashTable = new AnagramHashTable();
+    for (let value = 0; value < words.length; value++) {
+        let key = [...words[value]]
+        hashTable.add(key.sort(), words[value]);
+    }
+    return hashTable.getAnagrams();
+}
+
+
+// console.log(groupAnagrams(["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
