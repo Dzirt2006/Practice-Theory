@@ -555,20 +555,20 @@ function sortKMessedArrayWindow(arr, k) {
 
 //---------------------------------------------------------------------------------------smallestDifference
 
-//brute force O(n*m); space O(m);
+//brute force O(n*m); space O(1);
 function smallestDifferenceBrute(arrayOne, arrayTwo) {
     let closest;
     let resArr;
     for (let i = 0; i < arrayOne.length; i++) {
-        for(let j=0;j<arrayTwo.length;j++){
-            if(i===0){
-                closest=Math.abs(arrayOne[i]-arrayTwo[j]);
-                resArr=[arrayOne[i],arrayTwo[j]];
-            }else{
-                let temp=Math.abs(arrayOne[i]-arrayTwo[j]);
-                if(closest>temp){
-                    closest=Math.abs(arrayOne[i]-arrayTwo[j]);
-                    resArr=[arrayOne[i],arrayTwo[j]];
+        for (let j = 0; j < arrayTwo.length; j++) {
+            if (i === 0) {
+                closest = Math.abs(arrayOne[i] - arrayTwo[j]);
+                resArr = [arrayOne[i], arrayTwo[j]];
+            } else {
+                let temp = Math.abs(arrayOne[i] - arrayTwo[j]);
+                if (closest > temp) {
+                    closest = Math.abs(arrayOne[i] - arrayTwo[j]);
+                    resArr = [arrayOne[i], arrayTwo[j]];
                 }
             }
         }
@@ -577,8 +577,31 @@ function smallestDifferenceBrute(arrayOne, arrayTwo) {
 }
 
 
+// O(n*log(n)+m*log(m))
 function smallestDifference(arrayOne, arrayTwo) {
-
+    arrayOne.sort((a, b) => a - b);
+    arrayTwo.sort((a, b) => a - b);
+    let difference = Infinity;
+    let resArr;
+    let i = 0;
+    let j = 0
+    while (i < arrayOne.length && j < arrayTwo.length && difference !== 0) {
+        let sum;
+        const first = arrayOne[i];
+        const second = arrayTwo[j];
+        if (arrayOne[i] > arrayTwo[j]) {
+            sum = arrayOne[i] - arrayTwo[j];
+            j++;
+        } else {
+            sum = arrayTwo[j] - arrayOne[i];
+            i++;
+        }
+        if (sum < difference) {
+            difference = sum;
+            resArr = [first, second];
+        }
+    }
+    return resArr;
 }
 
 
@@ -586,5 +609,4 @@ const arr1 = [-1, 5, 10, 20, 28, 3]
 const arr2 = [26, 134, 135, 15, 17]
 
 
-
-console.log(smallestDifference(arr1,arr2))
+console.log(smallestDifference(arr1, arr2))
