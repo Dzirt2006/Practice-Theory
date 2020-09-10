@@ -642,7 +642,8 @@ class AnagramHashTable {
 function groupAnagrams(words) {
     const hashTable = new AnagramHashTable();
     for (let value = 0; value < words.length; value++) {
-        let key = [...words[value]]
+        let key = [...words[value]]//spread operator works like split on strings
+        console.log(key)
         hashTable.add(key.sort(), words[value]);
     }
     return hashTable.getAnagrams();
@@ -652,8 +653,9 @@ function groupAnagrams(words) {
 // console.log(groupAnagrams(["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]));
 
 
-
-
+let s=['dc42a31b']
+let te=[...s[0]]; //spread operator works like split on strings
+console.log(te)
 
 
 
