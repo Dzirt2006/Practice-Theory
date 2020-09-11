@@ -633,7 +633,7 @@ class AnagramHashTable {
     getAnagrams() {
         const result = [];
         for (let i in this.table) {
-                result.push(this.table[i]);
+            result.push(this.table[i]);
         }
         return result;
     }
@@ -653,19 +653,54 @@ function groupAnagrams(words) {
 // console.log(groupAnagrams(["yo", "act", "flop", "tac", "foo", "cat", "oy", "olfp"]));
 
 
-let s=['dc42a31b']
-let te=[...s[0]]; //spread operator works like split on strings
-console.log(te)
+let s = ['dc42a31b']
+let te = [...s[0]]; //spread operator works like split on strings
+// console.log(te)
 
 
+//-------------------------------------------------------------Longest Substring Without Duplication----------------------------
 
 
+function longestSubstringWithoutDuplication(string) {
+    const table = {};
+    let startIndex = 0;
+    let subs = [0, 1];
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] in table) {
+            startIndex = Math.max(startIndex, table[string[i]] + 1);
+        }
+        if (subs[1] - subs[0] < i + 1 - startIndex) {
+            subs = [startIndex, i + 1];
+        }
+        table[string[i]] = i;
+    }
+    return string.slice(subs[0], subs[1]);
+}
 
 
+// console.log(longestSubstringWithoutDuplication("abacacacaaabacaaaeaaafa"))
 
 
+//----------------------------------------------------------------------------Find Three Largest Numbers-------------------------------
 
+function findThreeLargestNumbers(arr) {
+    const result = [-Infinity, -Infinity, -Infinity];
+    for (let i = 0; i < arr.length; i++) {
+        let smallest=smalestInArr(result);
+        if(arr[i]>=result[smallest]){
+            result[smallest]=arr[i];
+        }
+    }
+    return result;
+}
 
+const smalestInArr = (arr) => {
+    let first = arr[0] > arr[1] ? 1: 0;
+    let second = arr[2]>arr[first] ? first: 2;
+    return second;
+}
+
+console.log(findThreeLargestNumbers([141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]));
 
 
 
