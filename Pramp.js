@@ -46,9 +46,80 @@ function spliter(arr) {
 console.log("answer ", shiftedArrSearch([9, 12, 17, 2, 4, 5], 4))
 
 
+console.log(!!undefined)
+
+//
+function shortestWordEditPath(source, target, words) {
+    for(let i=0;i<words.length;i++){
+        const len=words[i].length-1;
+
+    }
+}
+
+
+const getChar=(word,arr,i)=>{
+    for(let j=i;j<arr.length;j++){
+        const stack = ['pog'];
+
+        while (stack.lenght) {
+            cur = stack.pop();
+            if(cur) {
+                stack.push(...getChars(cur));
+            }
+
+
+        }
+    }
+}
 
 
 
+
+
+const getChar=(word,arr)=>{
+    const alphabet = new Set(['abcdefghijklmnopqrstuvwxyz']);
+
+    // word = po
+
+    // arr.includes(alphabet.has(word[0])  ,word[1] )
+    // arr.includes(word[0], alphabet.has(word[1]) )
+
+    // alphabet.has('a') ->
+}
+/*
+
+  ["but", "put", "big", "pot", "pog", "dog", "lot"]
+
+  DOG
+
+  {a-z}og -> pog
+  d{a-z}g ->
+  do{a-z} ->
+
+
+  [pog]
+
+  {a-z}og -> pog
+  d{a-z}g ->
+  do{a-z} ->
+
+  'dog', {a-z}og, d{a-z}g, do{a-z}
+  getChars -> []
+
+  const stack = ['pog'];
+
+  while (stack.lenght) {
+    cur = stack.pop();
+    if(cur) {
+     stack.push(...getChars(cur));
+    }
+
+
+  }
+
+
+
+*/
 
 
 

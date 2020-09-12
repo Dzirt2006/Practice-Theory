@@ -130,18 +130,18 @@ function validateBst(tree) {
     return validateBstRec(tree, -Infinity, Infinity);
 }
 
-const validateBstRec = (tree, min,max) => {
- if(tree===null) return true;
- if(tree.value<min || tree.value>=max) return false;
- const left=validateBstRec(tree.left,min,tree.value);
- const right=validateBstRec(tree.right,tree.value,max);
- return left===right;
+const validateBstRec = (tree, min, max) => {
+    if (tree === null) return true;
+    if (tree.value < min || tree.value >= max) return false;
+    const left = validateBstRec(tree.left, min, tree.value);
+    const right = validateBstRec(tree.right, tree.value, max);
+    return left === right;
 }
 
 //----------------------------------------------------------------------------------Traversal BST---------------------------------
 
 function inOrderTraverse(tree, array) {
-    if(tree) {
+    if (tree) {
         inOrderTraverse(tree.left, array);
         array.push(tree.value);
         inOrderTraverse(tree.right, array);
@@ -150,7 +150,7 @@ function inOrderTraverse(tree, array) {
 }
 
 function preOrderTraverse(tree, array) {
-    if(tree) {
+    if (tree) {
         array.push(tree.value);
         preOrderTraverse(tree.left, array);
         preOrderTraverse(tree.right, array);
@@ -160,11 +160,62 @@ function preOrderTraverse(tree, array) {
 }
 
 function postOrderTraverse(tree, array) {
-    if(tree) {
+    if (tree) {
         postOrderTraverse(tree.left, array);
         postOrderTraverse(tree.right, array);
         array.push(tree.value);
     }
     return array;
 }
- console.log(preOrderTraverse(tree,[]))
+
+console.log(preOrderTraverse(tree, []))
+
+//---------------------------------------------------------------------------------------------min height ------
+
+
+
+const minHeightBst = (arr, min = 0, max = arr.length - 1, bst) => {
+    if(min>max)return
+    if (min === max) {
+        bst.insert(arr[min]);
+        return bst;
+    }
+    // console.log(arr,min,max,bst)
+    const mid = (min + max) / 2 | 0;
+    if (!bst) {
+        bst = new BST(arr[mid])
+    } else {
+        bst.insert(arr[mid]);
+    }
+    let left = arr[mid - 1] ? mid - 1 : -1;
+    let right = arr[mid + 1] ? mid + 1 : -1;
+    console.log(min,left,mid,right,max)
+    if (left > -1) {
+        hell(arr, min, left, bst);
+    }
+    if (right > -1) {
+        hell(arr, right, max,bst);
+    }
+    return bst;
+}
+
+
+const hell = (arr, min = 0, max = arr.length - 1, bst=null) => {
+    if(min>max)return
+    if (min === max) {
+        bst.insert(arr[min]);
+        return bst;
+    }
+    // console.log(arr,min,max,bst)
+    const mid = (min + max) / 2 | 0;
+    if (bst===null) {
+        bst = new BST(arr[mid])
+    } else {
+        bst.insert(arr[mid]);
+    }
+    hell(arr, min, mid-1, bst);
+    hell(arr, mid+1, max,bst);
+    return bst;
+}
+
+console.log(hell([1, 2, 5, 7, 10, 13, 14, 15, 22]))
