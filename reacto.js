@@ -686,21 +686,85 @@ function longestSubstringWithoutDuplication(string) {
 function findThreeLargestNumbers(arr) {
     const result = [-Infinity, -Infinity, -Infinity];
     for (let i = 0; i < arr.length; i++) {
-        let smallest=smalestInArr(result);
-        if(arr[i]>=result[smallest]){
-            result[smallest]=arr[i];
+        let smallest = smalestInArr(result);
+        if (arr[i] >= result[smallest]) {
+            result[smallest] = arr[i];
         }
     }
     return result;
 }
 
 const smalestInArr = (arr) => {
-    let first = arr[0] > arr[1] ? 1: 0;
-    let second = arr[2]>arr[first] ? first: 2;
+    let first = arr[0] > arr[1] ? 1 : 0;
+    let second = arr[2] > arr[first] ? first : 2;
     return second;
 }
 
-console.log(findThreeLargestNumbers([141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]));
+// console.log(findThreeLargestNumbers([141, 1, 17, -7, -17, -27, 18, 541, 8, 7, 7]));
+
+
+//----------------------------------------------------------------------- Smallest Subsequence of Distinct Characters---------------------
+//Need to fix
+const smallestSubsequence = function (text) {
+    const set = new Set();
+    for (let i = 0; i < text.length; i++) {
+        if (set.has(text[i])) {
+            set.delete(text[i]);
+        }
+        set.add(text[i]);
+    }
+    const setVals = set.values();
+    let lemp = setVals.next().value;
+    let newStr = '';
+    while (lemp) {
+        newStr += lemp
+        lemp = setVals.next().value;
+    }
+    return newStr;
+};
+
+// console.log(smallestSubsequence("leetcode"));
+
+
+//----------------------------------------------------------------Majority Element------------------------------------------------
+
+const majorityElement = function (nums) {
+    const map = {};
+    for (let i = 0; i < nums.length; i++) {
+        if (map[nums[i]] === undefined) {
+            map[nums[i]] = 1;
+        } else {
+            map[nums[i]] += 1;
+        }
+    }
+    const keys = Object.keys(map);
+    let res = keys[0];
+    let resultComp = map[keys[0]];
+    for (let i = 1; i < keys.length; i++) {
+        if (map[keys[i]] > resultComp) {
+            resultComp = map[keys[i]];
+            res = keys[i];
+        }
+    }
+    return res;
+};
+
+// console.log(majorityElement([6,5,5]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
