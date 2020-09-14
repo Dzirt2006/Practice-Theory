@@ -1,5 +1,5 @@
 class Heap {
-    constructor(array, type) {
+    constructor(array = [], type) {
         console.log(type)
         this.type = type === "min" ? (a, b) => a > b : (a, b) => a < b;
         this.direction = type;
@@ -69,8 +69,6 @@ class Heap {
 
     }
 }
-
-
 
 
 const arrayInpt = [48, 12, 24, 7, 8, -5, 24, 391, 24, 56, 2, 6, 8, 41];
@@ -197,22 +195,22 @@ function arrHeapPremSwap(arr, size, permutation) {
  */
 
 function sortKMessedArray(arr, k) {
-    const tempArr=[];
+    const tempArr = [];
     let minHeap;
-    const result=[];
-    for(let i=0;i<arr.length;i++){
-        if(i<k+1){
+    const result = [];
+    for (let i = 0; i < arr.length; i++) {
+        if (i < k + 1) {
             tempArr.push(arr[i])
-            if(i===k){
-                minHeap=new Heap(tempArr,'min')
+            if (i === k) {
+                minHeap = new Heap(tempArr, 'min')
             }
-        }else{
+        } else {
 
             minHeap.insert(arr[i]);
             result.push(minHeap.remove());
         }
     }
-    for(let i=0;i<=k;i++){
+    for (let i = 0; i <= k; i++) {
         result.push(minHeap.remove());
     }
     return result;
@@ -220,9 +218,25 @@ function sortKMessedArray(arr, k) {
 
 // console.log(sortKMessedArray([1, 4, 5, 2, 3, 7, 8, 6, 10, 9],2))
 
-const arrHeap=[8, 5, 2, 9, 5, 6, 3]
+const arrHeap = [8, 5, 2, 9, 5, 6, 3]
 
 
+//-------------------------------------------------------------------------------Merge Sorted Arrays----------------------------------------------------------------
 
-const heap=new Heap(arrHeap,"max");
-console.log(heap.heap)
+
+function mergeSortedArrays(arrays) {
+    const heapmerge = new Heap([], 'min');
+    const res = [];
+    arrays.forEach(x => {
+        x.forEach(y => {
+            heapmerge.insert(y);
+        })
+    })
+    while (heapmerge.heap.length > 0) {
+        res.push(heapmerge.remove());
+    }
+    return res;
+}
+
+
+console.log(mergeSortedArrays([[1, 5, 9, 21], [-1, 0], [-124, 81, 121], [3, 6, 12, 20, 150]]))
