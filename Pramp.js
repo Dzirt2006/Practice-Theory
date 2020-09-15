@@ -72,6 +72,37 @@ const getChar=(word,arr,i)=>{
     }
 }
 
+//-----------------------------------------------------------------------------------absSort
+function absSort(arr) {
+    /**
+     input:  arr = [2, -7, -2, -2, 0]
+     output: [0, -2, -2, 2, -7]
+     */
+
+    // [2, -7, -2, -2, 0]
+
+    for(let i=1;i<arr.length;i++){
+        let j=i;
+        while(Math.abs(arr[j])<=Math.abs(arr[j-1])){
+            if(Math.abs(arr[j])===Math.abs(arr[j-1])){
+                if(arr[j]<arr[j-1]) swap(arr,j,j-1);
+            }else{
+                swap(arr,j,j-1);
+            }
+            j--;
+        }
+    }
+    return arr;
+}
+
+
+const swap=(arr,i,j)=>{
+    let temp=arr[i];
+    arr[i]=arr[j];
+    arr[j]=temp;
+}
+
+//--------------------------------------------------------------------------------------
 
 
 
