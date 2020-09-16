@@ -751,7 +751,7 @@ const majorityElement = function (nums) {
 
 // console.log(majorityElement([6,5,5]));
 
-//---------------------------------------------------------------------------917. Reverse Only Letters----------------------------
+//---------------------------------------------------------------------------Reverse Only Letters----------------------------
 /**
  * Input: "Test1ng-Leet=code-Q!"
  Output: "Qedo1ct-eeLg=ntse-T!"
@@ -759,38 +759,31 @@ const majorityElement = function (nums) {
  */
 
 const reverseOnlyLetters = function (s) {
-    if(!/^[A-Za-z]+$/.test(s)) return s
-    let res = "";
+    s = s.split("");
     let left = 0;
     let reverse = s.length - 1;
-    const regEx = /[\W\d\_]/gi
-    while (reverse >= 0 || left <= s.length - 1) {
-        let charOr = s[left];
-        let checkOr = regEx.exec(charOr);
-        if (checkOr !== null) {
-            res += charOr;
+    const regEx = /^[A-Za-z]+$/
+    while (reverse > left) {
+        if (!regEx.exec(s[left])) {
             left++;
+        } else if (!regEx.exec(s[reverse])) {
+            reverse--;
         } else {
-            let char = s[reverse];
-            let check = regEx.exec(char);
-            if (check === null) {
-                res += char;
-                reverse--;
-                left++;
-            } else {
-                reverse--;
-            }
+            let temp = s[reverse];
+            s[reverse] = s[left];
+            s[left] = temp;
+            left++;
+            reverse--;
         }
     }
-
-    return res;
+    return s.join("");
 };
 
-// const regEx = /[a-zA-Z]/gi
-// let test=regEx.exec("2")
-//
-// console.log('rex',test)
-console.log(reverseOnlyLetters("7_28]"))
+const regEx = /[a-zA-Z]/gi
+let test = regEx.exec("z")
+
+// console.log('rex',!!test)
+console.log(reverseOnlyLetters("Test1ng-Leet=code-Q!"))
 
 
 
