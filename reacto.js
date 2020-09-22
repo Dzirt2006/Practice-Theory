@@ -785,7 +785,58 @@ let test = regEx.exec("z")
 // console.log('rex',!!test)
 // console.log(reverseOnlyLetters("Test1ng-Leet=code-Q!"))
 
-//----------------------------------------------------------------------------------------------
+//-------------------------------------------------------------------------------------------monotonic array---
+
+const isMonotonic = function (arr) {
+    let trigger = ""
+    for (let i = 0; i < arr.length - 1; i++) {
+        if (i === 0 || !trigger) {
+            if (arr[i] > arr[i + 1]) {
+                trigger = 'dec'
+            } else if (arr[i] < arr[i + 1]) {
+                trigger = 'inc'
+            }
+        } else {
+            if (trigger === 'dec') {
+                if (arr[i] < arr[i + 1]) {
+                    return false;
+                }
+            } else if (trigger === 'inc') {
+                if (arr[i] > arr[i + 1]) {
+                    return false;
+                }
+            }
+        }
+    }
+    return true;
+};
+
+
+console.log(isMonotonic([1,1,1]))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
